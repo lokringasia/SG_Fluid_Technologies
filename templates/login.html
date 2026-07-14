@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | SG Fluid Technologies</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 950: '#001A3D', 900: '#002E64', 800: '#0B3B72', 100: '#E7EEF6' },
+          crimson: { 600: '#8E1832', 500: '#AB1D3F', 400: '#C43B58', 100: '#FBE9ED' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background: linear-gradient(180deg, #F7F9FC 0%, #EDF1F7 100%); }
+</style>
+</head>
+<body class="min-h-screen text-navy-900 flex flex-col items-center justify-center px-4 py-14">
+
+  <div class="w-full max-w-sm">
+    <div class="text-center mb-8">
+      <p class="text-lg font-extrabold text-navy-900 tracking-tight mb-1">SG Fluid Technologies</p>
+      <p class="text-[10px] uppercase tracking-[0.15em] text-navy-900/40 mb-5">
+        Distributor of <span class="font-bold text-navy-900/70">Lok<span class="text-crimson-500">ring</span> Asia</span>
+      </p>
+      <h1 class="text-xl font-bold text-navy-900">Admin Sign In</h1>
+      <p class="text-sm text-navy-900/60 mt-1">Installer Certification Registry</p>
+    </div>
+
+    {% if error %}
+      <div class="bg-crimson-100/70 border border-crimson-500/20 text-crimson-600 text-sm rounded-xl px-4 py-3 mb-5 text-center">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('admin_login', next=request.args.get('next')) }}" class="bg-white border border-navy-900/10 rounded-2xl p-6 shadow-lg shadow-navy-900/5">
+      <label class="block text-[11px] uppercase tracking-[0.2em] text-navy-900/50 mb-1.5">Username</label>
+      <input
+        type="text"
+        name="username"
+        autocomplete="username"
+        required
+        class="w-full bg-navy-100/40 text-navy-900 px-4 py-2.5 rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-crimson-500/40 text-sm"
+      />
+
+      <label class="block text-[11px] uppercase tracking-[0.2em] text-navy-900/50 mb-1.5">Password</label>
+      <input
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        required
+        class="w-full bg-navy-100/40 text-navy-900 px-4 py-2.5 rounded-xl mb-6 focus:outline-none focus:ring-2 focus:ring-crimson-500/40 text-sm"
+      />
+
+      <button
+        type="submit"
+        class="w-full bg-navy-900 text-white font-semibold py-2.5 rounded-xl hover:bg-navy-800 transition-all duration-200 text-sm tracking-wide"
+      >
+        Sign In
+      </button>
+    </form>
+
+    <p class="text-center text-xs text-navy-900/40 mt-6">
+      <a href="{{ url_for('verify') }}" class="hover:text-navy-900/70 underline">← Back to public verification page</a>
+    </p>
+  </div>
+
+</body>
+</html>
